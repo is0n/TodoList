@@ -8,7 +8,9 @@ let todos = [];
 
 fs.readFile('todos.txt', (err, data) => {
 	if (!err) {
-		todos = JSON.parse(data);
+		if (data.length > 0) {
+			todos = JSON.parse(data);
+		}
 	}
 });
 
@@ -95,4 +97,4 @@ client.on('message', async message => {
 	}
 });
 
-client.login(config.token);
+client.login(process.env.token);
